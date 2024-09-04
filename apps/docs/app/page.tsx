@@ -1,19 +1,10 @@
-"use client";
+import CommentComp from "@repo/ui/components/common/comment";
+import { getComments } from "~/apis/get";
 
-// import { useEffect, useState } from "react";
-// import { Comment, getComments } from "~/apis/get";
-// import CommentComp from "~/components/comment";
+export default async function Page() {
 
-export default function Page() {
-  // const [comments, setComments] = useState<Comment[]>([]);
+  const comments = await getComments();
 
-  // useEffect(() => {
-  //   (async () => {
-  //     setComments(await getComments());
-  //   })();
-  // }, []);
-
-  return (
-    "APP 2 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@"
-  );
+  return comments.map((comment) => <CommentComp key={comment.id} {...comment} />);
+  
 }
